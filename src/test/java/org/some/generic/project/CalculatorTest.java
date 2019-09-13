@@ -2,6 +2,7 @@ package org.some.generic.project;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ public class CalculatorTest {
   private Calculator calc = new Calculator();
   private final int x = 15;
   private final int y = 3;
-  private final int NumberOfRuns = 15;
+  private final int numberOfRuns = 15;
 
   @Test
   public void add() {
@@ -45,38 +46,46 @@ public class CalculatorTest {
   @Test
   public void divExceptional() {
     int divisor = 0;
-    int result = calc.div(x, divisor);
-    int expected = 0;
-    assertThat(result).isEqualTo(expected);
+    assertThatExceptionOfType(ArithmeticException.class).isThrownBy(() -> calc.div(x, divisor));
   }
 
   @Test
   public void addCallsWorks() {
     int result = 0;
     int initial = calc.getAddCalls();
-    for (int i = 0; i < NumberOfRuns; i++) {
+    for (int i = 0; i < numberOfRuns; i++) {
       result = calc.add(x, result);
     }
-    assertThat(NumberOfRuns).isEqualTo(calc.getAddCalls() - initial);
+    assertThat(numberOfRuns).isEqualTo(calc.getAddCalls() - initial);
   }
 
   @Test
   public void mulCallsWorks() {
     int result = 1;
     int initial = calc.getMulCalls();
-    for (int i = 0; i < NumberOfRuns; i++) {
+    for (int i = 0; i < numberOfRuns; i++) {
       result = calc.mul(x, result);
     }
-    assertThat(NumberOfRuns).isEqualTo(calc.getMulCalls() - initial);
+    assertThat(numberOfRuns).isEqualTo(calc.getMulCalls() - initial);
   }
 
   @Test
   public void subsCallsWorks() {
     int result = 1;
     int initial = calc.getSubsCalls();
-    for (int i = 0; i < NumberOfRuns; i++) {
+    for (int i = 0; i < numberOfRuns; i++) {
       result = calc.subtract(x, result);
     }
-    assertThat(NumberOfRuns).isEqualTo(calc.getSubsCalls() - initial);
+    assertThat(numberOfRuns).isEqualTo(calc.getSubsCalls() - initial);
+  }
+
+  @Test
+  public void divCallsWorks() {
+    int result = 1;
+    int initial = calc.getSubsCalls();
+    for (int i = 0; i < numberOfRuns; i++) {
+      result = calc.div(x, result);
+    }
+    assertThat(numberOfRuns).isEqualTo(calc.getDivCalls() - initial);
   }
 }
