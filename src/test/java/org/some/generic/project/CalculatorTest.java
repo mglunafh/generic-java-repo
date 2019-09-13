@@ -22,9 +22,16 @@ public class CalculatorTest {
 
   @Test
   public void mul() {
-    int expected = x + y;
+    int expected = x * y;
     int result = calc.mul(x, y);
 
+    assertThat(result).isEqualTo(expected);
+  }
+
+  @Test
+  public void subs() {
+    int result = calc.subtract(x, y);
+    int expected = x - y;
     assertThat(result).isEqualTo(expected);
   }
 
@@ -46,13 +53,6 @@ public class CalculatorTest {
       result = calc.mul(x, result);
     }
     assertThat(NumberOfRuns).isEqualTo(calc.getMulCalls() - initial);
-  }
-
-  @Test
-  public void subs() {
-    int result = calc.subtract(x, y);
-    int expected = x - y;
-    assertThat(result).isEqualTo(expected);
   }
 
   @Test
