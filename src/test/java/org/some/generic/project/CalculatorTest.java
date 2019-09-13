@@ -36,6 +36,21 @@ public class CalculatorTest {
   }
 
   @Test
+  public void divRegular() {
+    int result = calc.div(x, y);
+    int expected = x / y;
+    assertThat(result).isEqualTo(expected);
+  }
+
+  @Test
+  public void divExceptional() {
+    int divisor = 0;
+    int result = calc.div(x, divisor);
+    int expected = 0;
+    assertThat(result).isEqualTo(expected);
+  }
+
+  @Test
   public void addCallsWorks() {
     int result = 0;
     int initial = calc.getAddCalls();

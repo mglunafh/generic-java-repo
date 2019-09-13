@@ -10,6 +10,7 @@ public class Calculator {
   private int addCalls;
   private int mulCalls;
   private int subsCalls;
+  private int divCalls;
 
   public int add(int x, int y) {
     addCalls++;
@@ -24,5 +25,10 @@ public class Calculator {
   public int subtract(int x, int y) {
     subsCalls++;
     return x - y;
+  }
+
+  public int div(int x, int y) {
+    divCalls++;
+    return x / y;
   }
 }
