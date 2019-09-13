@@ -9,8 +9,9 @@ import org.junit.Test;
 public class CalculatorTest {
 
   private Calculator calc;
-  private int x = 15;
-  private int y = 3;
+  private final int x = 15;
+  private final int y = 3;
+  private final int NumberOfRuns = 15;
 
   @Before
   public void setUp() {
@@ -35,21 +36,19 @@ public class CalculatorTest {
 
   @Test
   public void addCallsWorks() {
-    int n = 15;
     int result = 0;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < NumberOfRuns; i++) {
       result = calc.add(x, result);
     }
-    assertThat(n).isEqualTo(calc.getAddCalls());
+    assertThat(NumberOfRuns).isEqualTo(calc.getAddCalls());
   }
 
   @Test
   public void mulCallsWorks() {
-    int n = 10;
     int result = 1;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < NumberOfRuns; i++) {
       result = calc.mul(x, result);
     }
-    assertThat(n).isEqualTo(calc.getMulCalls());
+    assertThat(NumberOfRuns).isEqualTo(calc.getMulCalls());
   }
 }
