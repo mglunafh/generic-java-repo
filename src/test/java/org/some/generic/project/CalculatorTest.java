@@ -3,20 +3,14 @@ package org.some.generic.project;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class CalculatorTest {
 
-  private Calculator calc;
+  private Calculator calc = new Calculator();
   private final int x = 15;
   private final int y = 3;
   private final int NumberOfRuns = 15;
-
-  @Before
-  public void setUp() {
-    calc = new Calculator();
-  }
 
   @Test
   public void add() {
@@ -37,18 +31,37 @@ public class CalculatorTest {
   @Test
   public void addCallsWorks() {
     int result = 0;
+    int initial = calc.getAddCalls();
     for (int i = 0; i < NumberOfRuns; i++) {
       result = calc.add(x, result);
     }
-    assertThat(NumberOfRuns).isEqualTo(calc.getAddCalls());
+    assertThat(NumberOfRuns).isEqualTo(calc.getAddCalls() - initial);
   }
 
   @Test
   public void mulCallsWorks() {
     int result = 1;
+    int initial = calc.getMulCalls();
     for (int i = 0; i < NumberOfRuns; i++) {
       result = calc.mul(x, result);
     }
-    assertThat(NumberOfRuns).isEqualTo(calc.getMulCalls());
+    assertThat(NumberOfRuns).isEqualTo(calc.getMulCalls() - initial);
+  }
+
+  @Test
+  public void subs() {
+    int result = calc.subtract(x, y);
+    int expected = x - y;
+    assertThat(result).isEqualTo(expected);
+  }
+
+  @Test
+  public void subsCallsWorks() {
+    int result = 1;
+    int initial = calc.getSubsCalls();
+    for (int i = 0; i < NumberOfRuns; i++) {
+      result = calc.subtract(x, result);
+    }
+    assertThat(NumberOfRuns).isEqualTo(calc.getSubsCalls() - initial);
   }
 }

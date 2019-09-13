@@ -9,6 +9,7 @@ public class Calculator {
 
   private int addCalls;
   private int mulCalls;
+  private int subsCalls;
 
   public int add(int x, int y) {
     addCalls++;
@@ -18,5 +19,10 @@ public class Calculator {
   public int mul(int x, int y) {
     mulCalls++;
     return x * y;
+  }
+
+  public int subtract(int x, int y) {
+    subsCalls++;
+    return x - y;
   }
 }
