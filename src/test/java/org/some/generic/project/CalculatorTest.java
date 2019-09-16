@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 public class CalculatorTest {
 
@@ -12,6 +13,11 @@ public class CalculatorTest {
   private final int x = 15;
   private final int y = 3;
   private final int numberOfRuns = 15;
+
+  @BeforeEach
+  public void setUp() {
+    System.out.println("Running new test");
+  }
 
   @Test
   public void add() {
