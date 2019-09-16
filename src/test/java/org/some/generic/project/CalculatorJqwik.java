@@ -1,7 +1,10 @@
 package org.some.generic.project;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
+import net.jqwik.api.Example;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.Provide;
@@ -46,6 +49,11 @@ public class CalculatorJqwik {
   boolean isGcdSmallerThanNumbers(@ForAll("nonZero") int first, @ForAll("nonZero") int second) {
     int result = calc.gcd(first, second);
     return result <= Math.min(Math.abs(first), Math.abs(second));
+  }
+
+  @Example
+  void findGcdOf1331And132() {
+    assertThat(calc.gcd(1331, 132)).isEqualTo(11);
   }
 
   @Provide

@@ -45,6 +45,6 @@ public class Calculator {
       y = t;
       t = x % y;
     }
-    return t;
+    return y;
   }
 }
