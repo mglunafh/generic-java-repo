@@ -1,12 +1,16 @@
 package org.some.generic.project;
 
+import net.jqwik.api.Arbitraries;
+import net.jqwik.api.Arbitrary;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
+import net.jqwik.api.Provide;
 import net.jqwik.api.constraints.Positive;
 
 public class CalculatorJqwik {
 
   private Calculator calc = new Calculator();
+  private static int BIG_CONSTANT = 1_000_000_000;
 
   @Property
   boolean isAdditionCommutative(@ForAll int first, @ForAll int second) {
@@ -36,5 +40,16 @@ public class CalculatorJqwik {
     int result = calc.div(first, second);
     int remainder = first - second * result;
     return Math.abs(remainder) < second;
+  }
+
+  @Property
+  boolean isGcdSmallerThanNumbers(@ForAll("nonZero") int first, @ForAll("nonZero") int second) {
+    int result = calc.gcd(first, second);
+    return result <= Math.min(Math.abs(first), Math.abs(second));
+  }
+
+  @Provide
+  Arbitrary<Integer> nonZero() {
+    return Arbitraries.integers().between(-BIG_CONSTANT, BIG_CONSTANT).filter(i -> i != 0);
   }
 }

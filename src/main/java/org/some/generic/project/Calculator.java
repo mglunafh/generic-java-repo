@@ -31,4 +31,20 @@ public class Calculator {
     divCalls++;
     return x / y;
   }
+
+  public int gcd(int x, int y) {
+    if (x == 0 || y == 0) {
+      return 0;
+    }
+    x = Math.abs(x);
+    y = Math.abs(y);
+
+    int t = x % y;
+    while (t != 0) {
+      x = y;
+      y = t;
+      t = x % y;
+    }
+    return t;
+  }
 }
