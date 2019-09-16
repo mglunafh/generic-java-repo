@@ -6,6 +6,7 @@ import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
 import net.jqwik.api.Example;
 import net.jqwik.api.ForAll;
+import net.jqwik.api.Label;
 import net.jqwik.api.Property;
 import net.jqwik.api.Provide;
 import net.jqwik.api.constraints.Positive;
@@ -45,13 +46,21 @@ public class CalculatorJqwik {
     return Math.abs(remainder) < second;
   }
 
-  @Property
+  @Property(tries = 200)
   boolean isGcdSmallerThanNumbers(@ForAll("nonZero") int first, @ForAll("nonZero") int second) {
     int result = calc.gcd(first, second);
-    return result <= Math.min(Math.abs(first), Math.abs(second));
+    return 0 <= result && result <= Math.min(Math.abs(first), Math.abs(second));
+  }
+
+  @Property
+  @Label("GCD should really be GCD")
+  boolean isGcd(@ForAll("nonZero") int first, @ForAll("nonZero") int second) {
+    int result = calc.gcd(first, second);
+    return first % result == 0 && second % result == 0;
   }
 
   @Example
+  @Label("Useful example that helped finding out that GCD used to return zero hahaha")
   void findGcdOf1331And132() {
     assertThat(calc.gcd(1331, 132)).isEqualTo(11);
   }
