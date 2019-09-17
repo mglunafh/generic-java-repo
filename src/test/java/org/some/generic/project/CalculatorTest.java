@@ -56,6 +56,13 @@ public class CalculatorTest {
   }
 
   @Test
+  public void gcd() {
+    int result = calc.gcd(1024, 36);
+    int expected = 4;
+    assertThat(result).isEqualTo(expected);
+  }
+
+  @Test
   public void addCallsWorks() {
     int result = 0;
     int initial = calc.getAddCalls();
@@ -93,5 +100,15 @@ public class CalculatorTest {
       result = calc.div(x, result);
     }
     assertThat(numberOfRuns).isEqualTo(calc.getDivCalls() - initial);
+  }
+
+  @Test
+  public void gcdCallsWorks() {
+    int result = 1;
+    int initial = calc.getGcdCalls();
+    for (int i = 1; i <= numberOfRuns; i++) {
+      result = calc.gcd(x, i);
+    }
+    assertThat(numberOfRuns).isEqualTo(calc.getGcdCalls() - initial);
   }
 }

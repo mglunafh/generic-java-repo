@@ -11,7 +11,14 @@ public class Calculator {
   private int mulCalls;
   private int subsCalls;
   private int divCalls;
+  private int gcdCalls;
 
+  /**
+   * Calculates sum of two integers.
+   * @param x first operand
+   * @param y second operand
+   * @return the sum of passed numbers
+   */
   public int add(int x, int y) {
     addCalls++;
     return x + y;
@@ -33,6 +40,7 @@ public class Calculator {
   }
 
   public int gcd(int x, int y) {
+    gcdCalls++;
     if (x == 0 || y == 0) {
       return 0;
     }
