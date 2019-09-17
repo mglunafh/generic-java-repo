@@ -11,6 +11,7 @@ public class Calculator {
   private int mulCalls;
   private int subsCalls;
   private int divCalls;
+  private int gcdCalls;
 
   public int add(int x, int y) {
     addCalls++;
@@ -33,6 +34,7 @@ public class Calculator {
   }
 
   public int gcd(int x, int y) {
+    gcdCalls++;
     if (x == 0 || y == 0) {
       return 0;
     }
