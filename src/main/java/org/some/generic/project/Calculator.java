@@ -13,6 +13,12 @@ public class Calculator {
   private int divCalls;
   private int gcdCalls;
 
+  /**
+   * Calculates sum of two integers.
+   * @param x first operand
+   * @param y second operand
+   * @return the sum of passed numbers
+   */
   public int add(int x, int y) {
     addCalls++;
     return x + y;
