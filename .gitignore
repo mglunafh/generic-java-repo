@@ -29,3 +29,6 @@ target/
 
 # Jqwik run entries
 .jqwik-database
+
+# Local files
+*-local.*
