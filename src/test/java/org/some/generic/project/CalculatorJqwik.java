@@ -6,6 +6,7 @@ import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
 import net.jqwik.api.Example;
 import net.jqwik.api.ForAll;
+import net.jqwik.api.GenerationMode;
 import net.jqwik.api.Label;
 import net.jqwik.api.Property;
 import net.jqwik.api.Provide;
@@ -70,7 +71,7 @@ public class CalculatorJqwik {
     assertThat(calc.fact(6)).isEqualTo(720);
   }
 
-  @Property
+  @Property(generation = GenerationMode.EXHAUSTIVE)
   boolean isFactorialDivided(@ForAll("notBigIntegers") int n) {
 
     long result = calc.fact(n);

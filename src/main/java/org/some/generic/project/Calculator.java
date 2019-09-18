@@ -63,7 +63,7 @@ public class Calculator {
       return 0;
     }
     long acc = 1;
-    for (int i = 2; i < n; i++) {
+    for (int i = 2; i <= n; i++) {
       acc *= i;
     }
 

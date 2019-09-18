@@ -118,4 +118,14 @@ public class CalculatorTest {
     }
     assertThat(numberOfRuns).isEqualTo(calc.getGcdCalls() - initial);
   }
+
+  @Test
+  public void factCallsWorks() {
+    long result = 1;
+    int initial = calc.getFactCalls();
+    for (int i = 0; i < numberOfRuns; i++) {
+      result = calc.fact(i);
+    }
+    assertThat(numberOfRuns).isEqualTo(calc.getFactCalls() - initial);
+  }
 }
