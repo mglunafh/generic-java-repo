@@ -12,6 +12,7 @@ public class Calculator {
   private int subsCalls;
   private int divCalls;
   private int gcdCalls;
+  private int factCalls;
 
   /**
    * Calculates sum of two integers.
@@ -54,5 +55,18 @@ public class Calculator {
       t = x % y;
     }
     return y;
+  }
+
+  public long fact(int n) {
+    factCalls++;
+    if (n < 0) {
+      return 0;
+    }
+    long acc = 1;
+    for (int i = 2; i < n; i++) {
+      acc *= i;
+    }
+
+    return acc;
   }
 }
