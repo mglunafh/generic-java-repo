@@ -4,6 +4,8 @@ package org.some.generic.project;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -64,9 +66,9 @@ public class CalculatorTest {
 
   @Test
   public void fact() {
-    long result = calc.fact(5);
-    long expected = 120;
-    assertThat(result).isEqualTo(expected);
+    List<Integer> numbers = Arrays.asList(-10, -1, 0, 5, 6);
+    long[] result = numbers.stream().mapToLong(calc::fact).toArray();
+    assertThat(result).containsExactly(0, 0, 1, 120, 720);
   }
 
   @Test

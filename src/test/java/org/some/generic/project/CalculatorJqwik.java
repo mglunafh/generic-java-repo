@@ -66,11 +66,6 @@ public class CalculatorJqwik {
     assertThat(calc.gcd(1331, 132)).isEqualTo(11);
   }
 
-  @Example
-  void findSomeFactorials() {
-    assertThat(calc.fact(6)).isEqualTo(720);
-  }
-
   @Property(generation = GenerationMode.EXHAUSTIVE)
   boolean isFactorialDivided(@ForAll("notBigIntegers") int n) {
 
