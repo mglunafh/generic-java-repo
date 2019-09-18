@@ -65,6 +65,28 @@ public class CalculatorJqwik {
     assertThat(calc.gcd(1331, 132)).isEqualTo(11);
   }
 
+  @Example
+  void findSomeFactorials() {
+    assertThat(calc.fact(6)).isEqualTo(720);
+  }
+
+  @Property
+  boolean isFactorialDivided(@ForAll("notBigIntegers") int n) {
+
+    long result = calc.fact(n);
+    for (int i = 2; i <= n; i++) {
+      if (result % i != 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  @Provide
+  Arbitrary<Integer> notBigIntegers() {
+    return Arbitraries.integers().between(2, 19);
+  }
+
   @Provide
   Arbitrary<Integer> nonZero() {
     return Arbitraries.integers().between(-BIG_CONSTANT, BIG_CONSTANT).filter(i -> i != 0);

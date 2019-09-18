@@ -63,6 +63,13 @@ public class CalculatorTest {
   }
 
   @Test
+  public void fact() {
+    long result = calc.fact(5);
+    long expected = 120;
+    assertThat(result).isEqualTo(expected);
+  }
+
+  @Test
   public void addCallsWorks() {
     int result = 0;
     int initial = calc.getAddCalls();
