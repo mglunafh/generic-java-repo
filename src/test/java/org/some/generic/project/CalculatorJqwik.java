@@ -60,6 +60,12 @@ public class CalculatorJqwik {
     return first % result == 0 && second % result == 0;
   }
 
+  @Property
+  boolean isArithmeticProgression(@ForAll int a, @ForAll int b, @ForAll("nonNegative") int n) {
+    int expected = a + b * n;
+    return expected == calc.arithmProgression(a, b, n);
+  }
+
   @Example
   @Label("Useful example that helped finding out that GCD used to return zero hahaha")
   void findGcdOf1331And132() {
@@ -81,6 +87,11 @@ public class CalculatorJqwik {
   @Provide
   Arbitrary<Integer> notBigIntegers() {
     return Arbitraries.integers().between(2, 19);
+  }
+
+  @Provide
+  Arbitrary<Integer> nonNegative() {
+    return Arbitraries.integers().greaterOrEqual(0);
   }
 
   @Provide

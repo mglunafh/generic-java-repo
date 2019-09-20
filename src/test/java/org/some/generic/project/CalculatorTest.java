@@ -130,4 +130,13 @@ public class CalculatorTest {
     }
     assertThat(numberOfRuns).isEqualTo(calc.getFactCalls() - initial);
   }
+
+  @Test
+  public void arithm() {
+    int a = 10;
+    int b = 5;
+    int n = 2;
+    int expected = 20;
+    assertThat(calc.arithmProgression(a,b,n)).isEqualTo(expected);
+  }
 }
