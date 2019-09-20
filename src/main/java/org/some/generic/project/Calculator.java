@@ -69,4 +69,16 @@ public class Calculator {
 
     return acc;
   }
+
+  public int arithmProgression(int a, int b, int n) {
+    if (n < 0) {
+      throw new IllegalArgumentException("n should be non-negative");
+    }
+
+    int acc = a;
+    for (int i = 0; i <= n; i++)  {
+      acc += b;
+    }
+    return acc;
+  }
 }
